@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Blog</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <title>Sample</title>
+  <style type="text/css" href="style.css"></style>
+  <link rel="stylesheet" href="style.css">
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+  <script
+    src="https://code.jquery.com/jquery-3.3.1.js"
+    integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+    crossorigin="anonymous"></script>
+  </head>
+
+  <body>
+    <!--deviseのnoticeメッセージを入力-->
+    <!--<p class="notice"><%= notice %></p>-->
+       <p class="alert"><%= alert %></p>
+<% if user_signed_in? %>
+     <nav class="blue lighten-2">
+    <div class="nav-wrapper">
+      <div class="logo">
+      <a href="/" class="brand-logo">BLOG</a>
+      </div>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="/tweets/new">投稿する</a></li>
+        <li><%= link_to 'サインアウト', destroy_user_session_path, method: :delete %></li>
+    </div>
+  </nav>
+  <% else %>
+       <nav class="blue lighten-2">
+    <div class="nav-wrapper">
+      <div class="logo">
+      <a href="/" class="brand-logo">BLOG</a>
+      </div>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="/users/sign_in">サインイン</a></li>
+        <li><a href="/users/sign_up">新規登録</a></li>
+      </ul>
+    </div>
+  </nav>
+  <% end %>
+    <%= yield %>
+  </body>
+</html>
+
